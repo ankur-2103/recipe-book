@@ -1,6 +1,8 @@
+import { useSelector } from "react-redux"
 import Footer from "../components/Footer"
 import Navbar from "../components/Navbar"
 import { Bookmark, CloseOne, ShareOne } from "@icon-park/react"
+import Loading from "./Loading"
 
 const recipe = {
     "vegetarian": false,
@@ -3553,7 +3555,11 @@ const recipe = {
 }
 
 const Recipe = () => {
-    return (
+
+    const isLoading = useSelector(state => state.user.isLoading);
+
+
+    return isLoading ? <Loading/> :
         <>
             <Navbar />
             <div className="flex flex-col mx-auto max-w-7xl">
@@ -3578,7 +3584,7 @@ const Recipe = () => {
                             <span className="font-medium text-3xl">Ingredients</span>
                             <ol className="px-6 list-decimal my-2 space-y-4">
                                 {recipe.extendedIngredients && recipe.extendedIngredients.map((data) => (
-                                    <li key={data.id} className="fl ex flex-col tracking-wider">
+                                    <li key={data.id} className="fl ex flex-col tracking-wider capitalize">
                                         <span className="font-semibold">{data.nameClean}</span>
                                         <span className="flex gap-4">
                                             {data.amount && <span>Amount: {data.amount}</span>}
@@ -3620,7 +3626,6 @@ const Recipe = () => {
             </div>
             <Footer/>
         </>
-    )
 }
 
 export default Recipe

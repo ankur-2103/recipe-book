@@ -5,9 +5,12 @@ import Recipes from "../components/Recipes/Recipes"
 import LatestRecipes from "../components/Recipes/LatestRecipes"
 import Slider from "../components/Slider/Slider"
 import Footer from "../components/Footer"
+import { useSelector } from "react-redux"
+import Loading from "./Loading"
 
 const Home = () => {
-    return (
+    const isLoading = useSelector(state => state.user.isLoading);
+    return isLoading ? <Loading/> :
         <>
             <NavBar />
             <Slider />
@@ -18,7 +21,7 @@ const Home = () => {
             <LatestRecipes />
             <Footer/>
         </>
-    )
+    
 }
 
 export default Home
