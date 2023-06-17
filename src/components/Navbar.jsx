@@ -18,7 +18,7 @@ const Navbar = () => {
           <div className="absolute inset-y-0 right-1 flex items-center rounded-r-md">
             <button className="bg-gray-200 p-1 border-r-10 rounded-r-md"><Search theme="outline" size="18" fill="#333"/></button>
           </div>
-          </div>
+        </div>
           <img
             className="inline-block h-10 w-10 rounded-full ring-2 ring-white"
             src="https://images.unsplash.com/photo-1550525811-e5869dd03032?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
