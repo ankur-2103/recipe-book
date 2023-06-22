@@ -3,8 +3,6 @@ import { GoogleAuthProvider, createUserWithEmailAndPassword, getAdditionalUserIn
 import React, { useState } from 'react'
 import { auth, database } from '../../misc/firebase';
 import { ref, serverTimestamp, set } from 'firebase/database';
-import { setUser } from '../../slice/userSlice';
-import { useDispatch } from 'react-redux';
 
 const Auth = ({option='login', close}) => {
 
@@ -14,7 +12,6 @@ const Auth = ({option='login', close}) => {
     const [email, setEmail] = useState('');
     const [pass, setPass] = useState('');
 
-    const dispatch = useDispatch();
 
     const handleTypeChange = () => {
         setType((val) => {
@@ -40,7 +37,7 @@ const Auth = ({option='login', close}) => {
                     }).catch((err)=>console.log(err))
                 })
             }
-            close()
+            close();
         } catch (error) {
             console.log(error);
         }
@@ -48,7 +45,7 @@ const Auth = ({option='login', close}) => {
 
     const handleGoogle = async () => {
         try {
-            const credentials = await signInWithPopup(auth, new GoogleAuthProvider).catch((err) => console.log(err));
+            const credentials = await signInWithPopup(auth, new GoogleAuthProvider()).catch((err) => console.log(err));
             const userMeta = getAdditionalUserInfo(credentials);
             if (userMeta.isNewUser) {
                 await set(ref(database, `/profiles/${credentials.user.uid}`), {
@@ -70,15 +67,15 @@ const Auth = ({option='login', close}) => {
 
             <div className={`relative w-full ${type==='login' && 'hidden'}`}>
                 <User className='absolute top-3 left-2'/>
-                 <input type="string" name="search" id="search" value={name} onChange={(e)=>setName(e.target.value)} className="w-full rounded-md border-0 py-2 pl-10 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-black-600 sm:text-sm sm:leading-6 " placeholder="Name"/>
+                 <input type="string" name="search" id="uname" value={name} onChange={(e)=>setName(e.target.value)} className="w-full rounded-md border-0 py-2 pl-10 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-black-600 sm:text-sm sm:leading-6 " placeholder="Name"/>
             </div>
             <div className='relative w-full'>
                 <Mail className='absolute top-3 left-2'/>
-                 <input type="email" name="search" id="search" value={email} onChange={(e)=>setEmail(e.target.value)} className="w-full rounded-md border-0 py-2 pl-10 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-black-600 sm:text-sm sm:leading-6 " placeholder="Email"/>
+                 <input type="email" name="search" id="email" value={email} onChange={(e)=>setEmail(e.target.value)} className="w-full rounded-md border-0 py-2 pl-10 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-black-600 sm:text-sm sm:leading-6 " placeholder="Email"/>
             </div>
             <div className='relative w-full'>
                 <Keyhole className='absolute top-3 left-2'/>
-                 <input type="password" name="search" id="search" value={pass} onChange={(e)=>setPass(e.target.value)} className="w-full rounded-md border-0 py-2 pl-10 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-black-600 sm:text-sm sm:leading-6 " placeholder="Password"/>
+                 <input type="password" name="search" id="pass" value={pass} onChange={(e)=>setPass(e.target.value)} className="w-full rounded-md border-0 py-2 pl-10 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-black-600 sm:text-sm sm:leading-6 " placeholder="Password"/>
             </div>
             </div>
             <button className='bg-[#FF642f] text-white px-8 py-2 rounded-lg capitalize' onClick={handleClick}>{type}</button>

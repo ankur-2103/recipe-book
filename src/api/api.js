@@ -20,7 +20,7 @@ const getData = async (URL, paramOptions ) => {
     try {
         return await axios.request(options);
     } catch (error) {
-        return error
+        console.log(error);
     }
 }
 
@@ -31,7 +31,8 @@ export const getAutoCompleteRecipes = ( query='chicken', number=5 ) => {
 
 export const getRecipesByfilter = (options) => {
     const url = baseUrl + 'recipes/complexSearch'
-    return getData(url, options);
+    console.log(options)
+    return getData(url, {...options});
 }
 
 export const getRecipeInfo = (id) => {

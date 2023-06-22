@@ -3,19 +3,23 @@ import { createSlice } from '@reduxjs/toolkit'
 export const userSlice = createSlice({
   name: 'user',
     initialState: {
-        info: null,
-        isLoading: true
+      info: null,
+      isLoading: true,
+      savedRecipes: null  
     },
   reducers: {
     setUser: (state, action) => {
       state.info = action.payload
     },
     setIsloading: (state, action) => {
-        state.isLoading = action.payload
-    }  
+      state.isLoading = action.payload
+    },
+    setSaveRecipes: (state, action) => {
+      state.savedRecipes = action.payload
+    }
   }
 })
 
-export const { setUser, setIsloading } = userSlice.actions
+export const { setUser, setIsloading, setSaveRecipes } = userSlice.actions
 
 export default userSlice.reducer

@@ -1,17 +1,10 @@
-import React, { useEffect, useState } from 'react'
 import RecipeCard from './RecipeCard'
-import { getRandomRecipes } from '../../api/api';
+import { useSelector } from 'react-redux';
+import Loading from '../../pages/Loading';
 
 const LatestRecipes = () => {
-    const [recipes, setRecipes] = useState();
+    const recipes = useSelector(state => state.recipes.randomRecipes);
 
-    useEffect(() => {
-        const getData = async () => {
-            const data = await getRandomRecipes('', 24);
-            setRecipes(data.data.recipes);
-        }
-        // getData()
-    },[])
 
     return recipes ? (
         <div className="mx-auto w-full my-8 px-4 relative group max-w-7xl flex flex-col gap-2 ">
@@ -20,7 +13,7 @@ const LatestRecipes = () => {
                 {recipes.map((data, i) => <RecipeCard key={i} id={data.id} name={data.title}/>)}      
             </div>
         </div>
-    ) : <></>
+    ) : <Loading/>
 }
 
 export default LatestRecipes

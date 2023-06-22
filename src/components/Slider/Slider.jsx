@@ -1,23 +1,22 @@
 import { ArrowLeft, ArrowRight } from '@icon-park/react';
 import React, { useEffect, useState } from 'react'
 import SliderItem from './SliderItem';
-import { getRandomRecipes } from '../../api/api';
+import { useSelector } from 'react-redux';
 
 
 
 
   
 const Slider = () => {
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [recipes, setRecipes] = useState(0);
-  
-  useEffect(() => {
-    const getData = async () => {
-      const data = await getRandomRecipes();
-      setRecipes(data.data.recipes);
-    }
-    // getData()
-  },[])
+    const [currentIndex, setCurrentIndex] = useState(0);
+    const [recipes, setRecipes] = useState(0);
+    const randomRecipes = useSelector(state => state.recipes.randomRecipes);
+
+    useEffect(() => {
+        if (randomRecipes) {
+            setRecipes(randomRecipes.slice(25, 30));
+        }
+    },[randomRecipes])
 
     const prevSlide = () => {
         const isFirstSlide = currentIndex === 0;

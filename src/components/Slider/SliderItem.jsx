@@ -1,16 +1,23 @@
 import React, { useEffect, useRef } from 'react'
+import { NavLink } from 'react-router-dom';
 
-const SliderItem = ({ id, name, readyIn, servings, summary, currIndex }) => {
+const SliderItem = ({ id, name, readyIn, servings, summary }) => {
 
     const animate = useRef();
 
     useEffect(() => {
+        
         setTimeout(() => {
             animate.current.classList.add('animate-fadeInAnimation');
         }, 5)
         
-        const removeClass = () => animate.current.classList.remove('animate-fadeInAnimation');
-        
+        const removeClass = () => {
+            try {
+                animate.current.classList.remove('animate-fadeInAnimation');
+            } catch (error) {
+                console.log(error);
+            }
+        }        
         return () => removeClass()
     },[id])
 
@@ -23,7 +30,8 @@ const SliderItem = ({ id, name, readyIn, servings, summary, currIndex }) => {
                 <div className='flex gap-4'>
                     <span className='text-lg text-zinc-500 '>Ready in: <span className='text-black font-bold'>{readyIn} mins</span></span>      
                     <span className='text-lg text-zinc-500 '>Servings: <span className='text-black font-bold'>{servings}</span></span>      
-                </div>                
+                </div> 
+                <NavLink to={`/recipe/${id}`}>Read more...</NavLink>
             </div>
         </div>
     )
