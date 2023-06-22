@@ -1,5 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit'
 
+// create a slice for storing data in state
+
 export const recipesSlice = createSlice({
   name: 'recipes',
     initialState: {

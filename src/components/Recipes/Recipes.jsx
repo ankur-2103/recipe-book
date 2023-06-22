@@ -3,13 +3,18 @@ import RecipeCard from "./RecipeCard";
 import Loading from "../../pages/Loading";
 import { useSelector } from "react-redux";
 
+// This file is used for displaying recipes
 
-
-const Recipes = ({title}) => {
+const Recipes = ({ title }) => {
+    
+    // state for displaying recipes cards
     const [recipes, setRecipes] = useState(null);
+
+    // get data from redux
     const cake = useSelector(state => state.recipes.cakeRecipes);
     const chicken = useSelector(state => state.recipes.chikenRecipes);
 
+    // set display recipes according to title
     useEffect(() => {
         if (title === 'Cakes') {
             setRecipes(cake);

@@ -2,28 +2,32 @@ import { ArrowLeft, ArrowRight } from '@icon-park/react';
 import React, { useEffect, useState } from 'react'
 import SliderItem from './SliderItem';
 import { useSelector } from 'react-redux';
+import Loading from '../../pages/Loading';
 
-
-
-
+// This file is used for displaying slider
   
 const Slider = () => {
+
+    // manage slider content and index
     const [currentIndex, setCurrentIndex] = useState(0);
     const [recipes, setRecipes] = useState(0);
     const randomRecipes = useSelector(state => state.recipes.randomRecipes);
 
+    // set slider recipes
     useEffect(() => {
         if (randomRecipes) {
             setRecipes(randomRecipes.slice(25, 30));
         }
-    },[randomRecipes])
-
+    }, [randomRecipes])
+    
+    // go back to previous slide
     const prevSlide = () => {
         const isFirstSlide = currentIndex === 0;
         const newIndex = isFirstSlide ? recipes.length - 1 : currentIndex - 1;
         setCurrentIndex(newIndex);
     };
 
+    // go to next slide
     const nextSlide = () => {
         const isLastSlide = currentIndex === recipes.length - 1;
         const newIndex = isLastSlide ? 0 : currentIndex + 1;
@@ -42,7 +46,7 @@ const Slider = () => {
                 <ArrowRight onClick={nextSlide} size={18} theme='outline'/>
             </div>
         </div>
-    ) : <></>
+    ) : <Loading/>
 }
 
 export default Slider

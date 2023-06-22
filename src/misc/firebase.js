@@ -3,6 +3,7 @@ import {getAuth} from 'firebase/auth'
 import {getDatabase} from 'firebase/database'
 import {getStorage} from 'firebase/storage'
 
+// firebase connection info
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_APIKEY,
   authDomain: process.env.REACT_APP_AUTHDOMAIN,

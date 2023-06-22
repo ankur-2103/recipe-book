@@ -11,6 +11,9 @@ import { setSaveRecipes } from '../slice/userSlice';
 import { getAutoCompleteRecipes, getRecipesByfilter } from '../api/api';
 import { setSearchRecipes } from '../slice/recipesSlice';
 
+// This file is used for displaying navbar
+
+// get user name first two letters of first two words
 export const getNameInitials = (name) => {
   const splitName = name.toUpperCase().split(' ');
   if (splitName.length > 1) {
@@ -20,6 +23,8 @@ export const getNameInitials = (name) => {
 }
 
 const Navbar = () => {
+
+  // state for displaying data
   const [isOpen, setIsOpen] = useState(false);
   const [menu, setMenu] = useState(false);
   const [option, setOption] = useState('login');
@@ -30,6 +35,7 @@ const Navbar = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   
+  // get search options according to search options
   useEffect(() => {
       const getData = async () => {
           const res = await getAutoCompleteRecipes(searchQuery);
@@ -41,6 +47,7 @@ const Navbar = () => {
       }
   }, [searchQuery])
 
+  // on search option click
   const handleSearch = async () => {
     const res = await getRecipesByfilter({ query:searchQuery, number:50 });
     if (res) {
@@ -51,6 +58,7 @@ const Navbar = () => {
     navigate('/search')
   }
 
+  // handle user logout
   const handleLogOut = async () => {
     setMenu(false); 
     await signOut(auth);

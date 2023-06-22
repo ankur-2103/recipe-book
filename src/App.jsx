@@ -15,10 +15,13 @@ import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import Profile from "./pages/Profile";
 
+// This file is used for displaying content according to url
+
 const App = () => {
 
   const dispatch = useDispatch();
   
+  // check user is log in 
   useEffect(() => {
     let userRef;
     let userFavouriteRef;

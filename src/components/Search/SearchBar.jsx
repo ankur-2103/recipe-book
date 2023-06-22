@@ -3,12 +3,18 @@ import { getAutoCompleteRecipes, getRecipesByfilter } from '../../api/api';
 import { useDispatch } from 'react-redux';
 import { setSearchRecipes } from '../../slice/recipesSlice';
 
+// This file is used for displaying search bar in search page
+
 const SearchBar = () => {
 
+    // state for search query and search options
     const [searchQuery, setSearchQuery] = useState('');
     const [searchQueryOptions, setSearchQueryOptions] = useState();
+
+    // use of useDispatch hook to set state in redux
     const dispatch = useDispatch();
 
+    // get search options according to search query
     useEffect(() => {
         const getData = async () => {
             const res = await getAutoCompleteRecipes(searchQuery);
@@ -20,9 +26,11 @@ const SearchBar = () => {
         }
     }, [searchQuery])
     
+    // handle search option click
     const handleSearch = async (query, number=50) => {
         const res = await getRecipesByfilter({query, number});
         dispatch(setSearchRecipes(res.data.results));
+        setSearchQueryOptions(null);
     }
 
     return (

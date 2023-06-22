@@ -3,8 +3,11 @@ import SearchBar from '../components/Search/SearchBar'
 import { useSelector } from 'react-redux'
 import RecipeCard from '../components/Recipes/RecipeCard'
 
+// This file is used for displaying search results
+
 const Search = () => {
 
+    // get data from redux
     const serachRecipes = useSelector(state => state.recipes.searchRecipes);
 
     return (

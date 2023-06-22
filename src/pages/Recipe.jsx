@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux"
-import { Bookmark, CloseOne, ShareOne } from "@icon-park/react"
+import { Bookmark, CloseOne } from "@icon-park/react"
 import Loading from "./Loading"
 import { child, push, ref, remove} from 'firebase/database';
 import { database } from "../misc/firebase"
@@ -10,8 +10,11 @@ import RecipeCard from "../components/Recipes/RecipeCard"
 import Modal from "../components/Modal/Modal"
 import Auth from "../components/Modal/Auth"
 
+// This file is used for displaying detail information of recipes
+
 const Recipe = () => {
 
+    // state for displaying data
     const isLoading = useSelector(state => state.user.isLoading);
     const save = useSelector(state => state.user.savedRecipes);
     const user = useSelector(state => state.user.info);
@@ -21,7 +24,7 @@ const Recipe = () => {
     const [isOpen, setIsOpen] = useState(null);
     const { id } = useParams();
 
-
+    // handle display data
     useEffect(() => {
 
         document.documentElement.scrollTop = 0;
@@ -57,7 +60,8 @@ const Recipe = () => {
         checkLike();
     },[save, id])
     
-    const handleLike = async () => {
+    // handle save
+    const handleSave = async () => {
 
         if (!user) {
             setIsOpen(true);
@@ -74,14 +78,6 @@ const Recipe = () => {
 
     }
 
-    const onShare = async () => {
-        try {
-            await navigator.share({ url: window.location.herf });
-        } catch (error) {
-            console.log(error)
-        }
-    }
-
     return isLoading || !data ? <Loading/> :
         <>
             
@@ -92,8 +88,7 @@ const Recipe = () => {
                     <p className="my-5" dangerouslySetInnerHTML={{ __html: data.summary }}></p>
                     <img src={`https://spoonacular.com/recipeImages/${id}-636x393.jpg`} alt='' className="md:h-sm md:mx-20 md:object-cover" />
                     <span className=" flex absolute right-1 gap-4">
-                        <ShareOne size={24} onClick={onShare}/>
-                        <Bookmark size={24} onClick={handleLike} theme='two-tone' fill={['#000', `${isSaved ? '#ff642f' : '#fff'}`]}/>   
+                        <Bookmark size={24} onClick={handleSave} theme='two-tone' fill={['#000', `${isSaved ? '#ff642f' : '#fff'}`]}/>   
                     </span>
                 </div>
                 <div className="flex flex-col md:flex-row md:divide-x-2 gap-10 my-2">

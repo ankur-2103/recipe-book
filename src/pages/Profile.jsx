@@ -9,9 +9,14 @@ import Loading from './Loading';
 import {  sendPasswordResetEmail } from 'firebase/auth';
 import Auth from '../components/Modal/Auth';
 
+// This file is used for displaying porfile page
+
+// User avatar options
 const fileInputTypes = '.png, .jpeg, jpg';
 const acceptedFileType = ['image/png', 'image/jpeg', 'image/jpg'];
 const isValidFile = (file) => acceptedFileType.includes(file.type);
+
+// get blob of cavas
 const getBlob = (canvas) => {
     return new Promise((resolve, reject) => {
         canvas.toBlob((blob) => {
@@ -27,6 +32,7 @@ const getBlob = (canvas) => {
 
 const Profile = () => {
     
+    // state for displaying data
     const userInfo = useSelector(state => state.user.info);
     const isLoading = useSelector(state => state.user.isLoading);
     const avtarEditorRef = useRef();
@@ -36,6 +42,7 @@ const Profile = () => {
     const [name, setName] = useState();
     const [disabled, setDisabled] = useState(true);
 
+    // handle user is login
     useEffect(() => {
         if (userInfo) {
             setName(userInfo.name)
@@ -47,6 +54,7 @@ const Profile = () => {
 
     }, [userInfo, isAuthOpen])
     
+    // handle change in user info
     useEffect(() => {
         if (userInfo && userInfo.name !== name ) {
             setDisabled(false);
@@ -55,6 +63,7 @@ const Profile = () => {
         }
     }, [userInfo, name]);
     
+    // on upload avatar
     const onAvatarUpload = async () => {
         try {
             const canvas = avtarEditorRef.current.getImageScaledToCanvas();
@@ -76,6 +85,7 @@ const Profile = () => {
         }
     }
 
+    // on avatar file input change
     const onFileInputChange = (e) => {
         const currFiles = e.target.files;
         const file = currFiles[0];
@@ -85,6 +95,7 @@ const Profile = () => {
         } 
     }
 
+    // update profile changes
     const updateProfile = async () => {
         try {
             const updates = {}

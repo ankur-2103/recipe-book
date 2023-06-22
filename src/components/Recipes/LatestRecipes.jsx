@@ -2,7 +2,11 @@ import RecipeCard from './RecipeCard'
 import { useSelector } from 'react-redux';
 import Loading from '../../pages/Loading';
 
+// This file is used for displaying latest recipes
+
 const LatestRecipes = () => {
+
+    // get recipes from redux
     const recipes = useSelector(state => state.recipes.randomRecipes);
 
 

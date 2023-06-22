@@ -1,7 +1,8 @@
 import { NavLink } from 'react-router-dom';
 
+// This file is used for displaying short recipes info in card.
+
 const RecipeCard = ({ id, name, healthScore, data }) => {
-    
 
     return (
         <div className='flex flex-col my-4 ring-2 rounded-3xl ring-zinc-300 p-2 shadow-lg md:w-52 md:max-h-64 relative'>

@@ -1,11 +1,13 @@
 import { Down, Up } from '@icon-park/react'
 import Logo from '../assets/logo.svg'
 import { useState } from 'react'
-import { useSelector } from 'react-redux'
 
+// displa data
 const recipeBook = ['About', 'Careers', 'Contact us', 'Feedback']
 const legal = ['Terms', 'Conditions', 'Cookies', 'Copyright']
 const follow = ['Facebook', 'Twitter', 'Instagram', 'Youtube']
+
+// This file is used for displaying footer
 
 const Footer = () => {
     const [isRecipeBook, setRecipeBook] = useState(false);

@@ -4,6 +4,8 @@ import Slider from "../components/Slider/Slider"
 import { useSelector } from "react-redux"
 import Loading from "./Loading"
 
+// This file is used for displaying home page
+
 const Home = () => {
     const isLoading = useSelector(state => state.user.isLoading);
     return isLoading ? <Loading/> :

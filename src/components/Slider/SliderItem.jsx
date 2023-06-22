@@ -1,10 +1,14 @@
 import React, { useEffect, useRef } from 'react'
 import { NavLink } from 'react-router-dom';
 
+// This file is used for displaying slider content
+
 const SliderItem = ({ id, name, readyIn, servings, summary }) => {
 
+    // reference of slider item to animate change
     const animate = useRef();
 
+    // animate changes on slider item change
     useEffect(() => {
         
         setTimeout(() => {

@@ -4,16 +4,23 @@ import React, { useState } from 'react'
 import { auth, database } from '../../misc/firebase';
 import { ref, serverTimestamp, set } from 'firebase/database';
 
+
+/*
+    This file is used for login or sign in of user
+*/
+
 const Auth = ({option='login', close}) => {
 
+    // type of content to display
     const [type, setType] = useState(option);
     const [fpass, setFpass] = useState(false);
 
+    // user info
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [pass, setPass] = useState('');
 
-
+    // handle change in type
     const handleTypeChange = () => {
         setType((val) => {
             if (val === 'login') {
@@ -24,6 +31,7 @@ const Auth = ({option='login', close}) => {
         })
     }
 
+    // handle user manual login or sign in
     const handleClick = async () => {
         if ((type === 'login' && !name.length) && !email.length && !pass.length) return;
 
@@ -44,6 +52,7 @@ const Auth = ({option='login', close}) => {
         }
     }
 
+    // handle user google authentication
     const handleGoogle = async () => {
         try {
             const credentials = await signInWithPopup(auth, new GoogleAuthProvider()).catch((err) => console.log(err));
@@ -60,6 +69,7 @@ const Auth = ({option='login', close}) => {
         }
     }
 
+    // handle password reset
     const handleResetPassword = async () => {
         try {
             await sendPasswordResetEmail(auth, email);

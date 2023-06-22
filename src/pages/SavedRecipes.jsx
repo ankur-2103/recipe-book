@@ -5,16 +5,20 @@ import Modal from '../components/Modal/Modal'
 import Auth from '../components/Modal/Auth'
 import Loading from './Loading'
 
+// This file is used for displaying saved recipes of user
+
 const SavedRecipes = () => {
     
+    // state for displaying data
     const recipes = useSelector(state => state.user.savedRecipes)
     const isLoading = useSelector(state => state.user.isLoading);
     const userInfo = useSelector(state => state.user.info);
     const [isOpen, setIsOpen] = useState(false);
 
+    // close auth modal
     const close = () => setIsOpen(false);
 
-    
+    // check user auth
     useEffect(() => {
         if (!userInfo && !isOpen) {
             setIsOpen(true);
