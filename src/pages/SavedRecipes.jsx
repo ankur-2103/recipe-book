@@ -14,7 +14,6 @@ const SavedRecipes = () => {
 
     const close = () => setIsOpen(false);
 
-    console.log(recipes)
     
     useEffect(() => {
         if (!userInfo && !isOpen) {

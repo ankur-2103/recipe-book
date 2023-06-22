@@ -68,10 +68,8 @@ const Profile = () => {
 
             
             const downloadUrl = await getDownloadURL(storageRef);
-            console.log(downloadUrl)
             await set(dbref(database, `profiles/${userInfo.uid}/avatar`), downloadUrl).catch(err=>console.log(err))
             
-            console.log(userInfo)
             setIsOpen(false)
         } catch (error) {
             console.log(error);

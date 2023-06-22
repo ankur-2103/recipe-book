@@ -65,7 +65,6 @@ const Recipe = () => {
         }
         
         const favouriteRef = child(ref(database, `profiles/${user.uid}`), 'savedRecipes')
-        console.log(isSaved)
         if (isSaved) {
             remove(ref(database, `profiles/${user.uid}/savedRecipes/${isSaved.favId}`));
             setIsSaved(null)

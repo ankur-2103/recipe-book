@@ -31,7 +31,6 @@ export const getAutoCompleteRecipes = ( query='chicken', number=5 ) => {
 
 export const getRecipesByfilter = (options) => {
     const url = baseUrl + 'recipes/complexSearch'
-    console.log(options)
     return getData(url, {...options});
 }
 

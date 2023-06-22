@@ -6,7 +6,6 @@ import RecipeCard from '../components/Recipes/RecipeCard'
 const Search = () => {
 
     const serachRecipes = useSelector(state => state.recipes.searchRecipes);
-    console.log(serachRecipes);
 
     return (
         <>

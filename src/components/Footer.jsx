@@ -11,7 +11,6 @@ const Footer = () => {
     const [isRecipeBook, setRecipeBook] = useState(false);
     const [isLegal, setLegal] = useState(false);
     const [isFollow, setFollow] = useState(false);
-    console.log(useSelector(state=>state.user))
     return (
         <div className='flex flex-col items-center justify-center bg-[#F9F9F9] text-[#7F7F7F] md:flex-row'>
             <div className='flex flex-col m-10 flex-1'>
