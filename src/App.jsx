@@ -2,6 +2,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Home from "./pages/Home";
 import Recipe from "./pages/Recipe";
 import Search from "./pages/Search";
+import NotFound from "./pages/NotFound";
 import { useEffect } from "react";
 import { onAuthStateChanged } from "firebase/auth";
 import { off, onValue, ref } from "firebase/database";
@@ -104,7 +105,7 @@ const App = () => {
 
   return (
     <>
-      <BrowserRouter>
+      <BrowserRouter basename="/recipe-book">
         <Navbar/>
         <Routes>
           <Route path="/" element={<Home/>} />
@@ -112,6 +113,7 @@ const App = () => {
           <Route path="/profile" element={<Profile/>} />
           <Route path="/recipe/:id" element={<Recipe/>} />
           <Route path="/saved-recipes/" element={<SavedRecipes/>} />
+          <Route path='*' element={<NotFound/>}/>
         </Routes>
       </BrowserRouter>
       <Footer/>
