@@ -105,7 +105,7 @@ const App = () => {
 
   return (
     <>
-      <BrowserRouter basename="/recipe-book">
+      <BrowserRouter>
         <Navbar/>
         <Routes>
           <Route path="/" element={<Home/>} />
